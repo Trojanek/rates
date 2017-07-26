@@ -30,7 +30,6 @@ class controller {
         }
         return base;
     }
-
     selectCountry(selectedItem) {
         if (selectedItem) {
             this.country = _.find(this.data.countriesData, { alpha2Code: this.chart.data[selectedItem.row + 1][0] });
@@ -38,6 +37,10 @@ class controller {
             delete this.country;
         }
     };
+    refresh() {
+        delete this.data;
+        this.getData(this.base);
+    }
 
 }
 
