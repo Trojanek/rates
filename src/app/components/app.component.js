@@ -2,7 +2,7 @@ import template from './app.template.html';
 
 class AppController {
     constructor() {
-        this.info = 'jestem!';
+        
     }
 }
 
