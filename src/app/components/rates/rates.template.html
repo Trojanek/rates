@@ -5,17 +5,23 @@
         layout="row"
         layout-align="space-between center">
         <div>
+            <span
+                class="md-body-1">Base:</span>
             <md-button
                 md-no-ink
                 ng-repeat="item in $ctrl.appConstants.validBases"
                 aria-label="{{item}}"
                 ui-sref-active="md-primary"
-                ui-sref="{ base: item }">{{item}}</md-button>
+                ui-sref="{ base: item }">
+                {{item}}
+                <md-tooltip>Base</md-tooltip>
+            </md-button>
             <md-button
                 class="md-icon-button"
                 aria-label="Refresh"
                 ng-click="$ctrl.getData($ctrl.base)">
                 <md-icon>refresh</md-icon>
+                <md-tooltip>Refresh</md-tooltip>
             </md-button>
         </div>
         <div
@@ -33,6 +39,11 @@
                 google-chart
                 chart="$ctrl.chart"
                 agc-on-select="$ctrl.selectCountry(selectedItem)"></div>
+        </div>
+        <div
+            ng-if="!$ctrl.country && $ctrl.data"
+            class="md-body-1 small-info">
+            Click on the map to show country info.
         </div>
         <div
             ng-if="$ctrl.country">
