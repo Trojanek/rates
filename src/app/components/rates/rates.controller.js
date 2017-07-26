@@ -16,8 +16,6 @@ class controller {
             appConstants,
         } = this;
         ratesService.getData(base).then((data) => {
-            console.log(data);
-
             this.data = data;
             this.chart = _.cloneDeep(appConstants.chart);
             this.chart.data = this.chart.data.concat(data.dataTable);
@@ -36,9 +34,6 @@ class controller {
     selectCountry(selectedItem) {
         if (selectedItem) {
             this.country = _.find(this.data.countriesData, { alpha2Code: this.chart.data[selectedItem.row + 1][0] });
-            // console.log(this.data.latestRates.rates);
-            // this.data.lastRates.rates
-            console.log(this.country);
         } else {
             delete this.country;
         }
