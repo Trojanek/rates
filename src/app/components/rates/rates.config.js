@@ -6,7 +6,7 @@ const config = ($stateProvider) => {
             url: `/${name}?base`,
             views: {
                 'content': {
-                    template: `<${name}></${name}>`,
+                    template: `<${name} flex></${name}>`,
                 },
             },
         });

@@ -4,7 +4,7 @@ const config = ($locationProvider, $urlRouterProvider, $mdThemingProvider) => {
     $mdThemingProvider
         .theme('default')
         .primaryPalette('red')
-        .accentPalette('green');
+        .accentPalette('teal');
 };
 
 config.$inject = [
