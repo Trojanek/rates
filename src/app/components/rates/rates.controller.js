@@ -33,8 +33,6 @@ class controller {
     selectCountry(selectedItem) {
         if (selectedItem) {
             this.country = _.find(this.data.countriesData, { alpha2Code: this.chart.data[selectedItem.row + 1][0] });
-            console.log(this.country);
-
         } else {
             delete this.country;
         }
