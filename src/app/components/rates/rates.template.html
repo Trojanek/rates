@@ -8,16 +8,26 @@
         class="menu">
         <div>
             <span
-                class="md-body-1">Base:</span>
+                class="md-body-1"
+                hide-xs>Base:</span>
             <md-button
                 md-no-ink
-                ng-repeat="item in $ctrl.appConstants.validBases"
+                ng-repeat="item in $ctrl.appConstants.currencies.bases"
                 aria-label="{{item}}"
                 ui-sref-active="md-primary"
                 ui-sref="{ base: item }">
                 {{item}}
-                <md-tooltip>Base</md-tooltip>
             </md-button>
+        </div>
+        <div
+            ng-if="$ctrl.data"
+            hide-xs>
+            <span
+                hide-sm
+                class="md-body-1">Last update</span>
+            <span
+                class="md-body-1"
+                am-time-ago="$ctrl.lastUpdate"></span>
             <md-button
                 class="md-icon-button"
                 aria-label="Refresh"
@@ -26,20 +36,12 @@
                 <md-tooltip>Refresh</md-tooltip>
             </md-button>
         </div>
-        <div
-            ng-if="$ctrl.data">
-            <span
-                class="md-body-1">Last update</span>
-            <span
-                class="md-body-1"
-                am-time-ago="$ctrl.lastUpdate"></span>
-        </div>
     </div>
     <div
         ng-if="!$ctrl.data"
         layout="row"
         layout-align="center center"
-        layout-fill>
+        flex>
         <md-progress-circular
             class="md-primary"
             md-mode="indeterminate"
@@ -47,10 +49,13 @@
     </div>
     <div
         layout="row"
-        layout-fill
+        layout-xs="column"
+        flex
         ng-if="$ctrl.data">
         <div
-            class="map-container">
+            class="map-container"
+            flex="66"
+            flex-xs="100">
             <div
                 google-chart
                 chart="$ctrl.chart"
@@ -58,10 +63,14 @@
         </div>
         <div
             ng-if="!$ctrl.country && $ctrl.data"
-            class="md-body-1 small-info">
+            class="md-body-1 small-info"
+            flex="33"
+            flex-xs="100">
             Click on the map to show country info.
         </div>
         <div
+            flex="33"
+            flex-xs="100"
             ng-if="$ctrl.country">
             <md-list>
                 <md-list-item>
@@ -88,8 +97,8 @@
                 <md-list-item class="md-2-line">
                     <div class="md-list-item-text">
                         <h3>
-                            {{ $ctrl.data.latestRates.rates[$ctrl.country.currencies[0].code] }}
-                            {{ $ctrl.base }}
+                            {{ 1 / $ctrl.data.latestRates.rates[$ctrl.country.currencies[0].code] | number : 3 }}
+                            {{ $ctrl.country.currencies[0].code }}/{{ $ctrl.base }}
                         </h3>
                         <p>Last price ({{$ctrl.data.latestRates.date | date : 'mediumDate'}})</p>
                     </div>
@@ -97,7 +106,7 @@
                 <md-list-item class="md-2-line">
                     <div class="md-list-item-text">
                         <h3>
-                            {{ ($ctrl.data.latestRates.rates[$ctrl.country.currencies[0].code] / $ctrl.data.prevRates.rates[$ctrl.country.currencies[0].code] - 1) * 100 | number : 3 }}%
+                            {{ ($ctrl.data.prevRates.rates[$ctrl.country.currencies[0].code] / $ctrl.data.latestRates.rates[$ctrl.country.currencies[0].code] - 1) * 100 | number : 3 }}%
                         </h3>
                         <p>Change</p>
                     </div>

@@ -5,7 +5,7 @@ class RatesService {
             moment,
             appConstants,
             apiService,
-            defaultBase: appConstants.api.rates.defaultBase,
+            defaultBase: appConstants.currencies.defaultBase,
         });
     }
     getData(base = this.defaultBase) {
@@ -28,13 +28,16 @@ class RatesService {
                     latestRates,
                 } = ratesData;
                 const dataTable = [];
+                latestRates.rates[base] = 1;
+                prevRates.rates[base] = 1;
+
                 countriesData.forEach((item) => {
                     const symbol = _.get(item, 'currencies[0].code');
                     const latestRate = _.get(latestRates, `rates[${symbol}]`);
                     const prevRate = _.get(prevRates, `rates[${symbol}]`);
                     if (latestRate) {
-                        const change = (latestRate / prevRate - 1);
-                        dataTable.push([item.alpha2Code, `${item.name} (${symbol})`, change, latestRate]);
+                        const change = (prevRate / latestRate - 1);
+                        dataTable.push([item.alpha2Code, `${item.name} (${symbol})`, change, 1 / latestRate]);
                     }
                 });
                 this.lastUpdate = moment();

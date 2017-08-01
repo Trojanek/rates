@@ -1,16 +1,17 @@
-const config = ($locationProvider, $urlRouterProvider, $mdThemingProvider) => {
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/rates?base=USD');
+const config = ($locationProvider, $urlRouterProvider, $mdThemingProvider, appConstants) => {
+    $locationProvider.html5Mode(appConstants.router.html5Mode);
+    $urlRouterProvider.otherwise(`/rates?base=${appConstants.currencies.defaultBase}`);
     $mdThemingProvider
         .theme('default')
-        .primaryPalette('red')
-        .accentPalette('teal');
+        .primaryPalette(appConstants.theme.primary)
+        .accentPalette(appConstants.theme.accent);
 };
 
 config.$inject = [
     '$locationProvider',
     '$urlRouterProvider',
     '$mdThemingProvider',
+    'appConstants',
 ];
 
 export default config;

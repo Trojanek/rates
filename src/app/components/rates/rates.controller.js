@@ -24,15 +24,17 @@ class controller {
     }
     getBase() {
         let base = this.$stateParams.base;
-        const validBase = _.includes(this.appConstants.validBases, base);
+        const validBase = _.includes(this.appConstants.currencies.bases, base);
         if (!validBase) {
-            base = this.appConstants.api.rates.defaultBase;
+            base = this.appConstants.currencies.defaultBase;
         }
         return base;
     }
     selectCountry(selectedItem) {
         if (selectedItem) {
             this.country = _.find(this.data.countriesData, { alpha2Code: this.chart.data[selectedItem.row + 1][0] });
+            console.log(this.country);
+
         } else {
             delete this.country;
         }

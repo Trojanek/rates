@@ -2,12 +2,11 @@ const appConstants = {
     chart: {
         type: 'GeoChart',
         data: [
-            ['', 'Name', 'Change', 'Last Price'],
+            ['alpha2Code', 'Name', 'Change', 'Last Price'],
         ],
         options: {
             // region: 151,
-            width: 800,
-            height: 600,
+            // height: 600,
             chartArea: {
                 left: 0,
                 top:0,
@@ -15,8 +14,8 @@ const appConstants = {
             },
             colorAxis: {
                 colors: ['#F44336', 'white', '#8BC34A'],
-                maxValue: 0.005,
-                minValue: - 0.005,
+                maxValue: 0.01,
+                minValue: - 0.01,
             },
             datalessRegionColor: '#B0BEC5',
             backgroundColor: '#E3F2FD',
@@ -36,19 +35,28 @@ const appConstants = {
         rates: {
             url: 'http://api.fixer.io/',
             defaultDate: 'latest',
-            defaultBase: 'USD',
         },
         countries: {
             url: 'https://restcountries.eu/rest/v2/all',
         }
 
     },
-    validBases: [
-        'USD',
-        'EUR',
-        'JPY',
-        'CHF',
-    ],
+    theme: {
+        primary: 'red',
+        accent: 'teal',
+    },
+    router: {
+        html5Mode: false,
+    },
+    currencies: {
+        defaultBase: 'EUR',
+        bases: [
+            'USD',
+            'EUR',
+            'JPY',
+            // 'CHF',
+        ],
+    },
 };
 
 export default appConstants;

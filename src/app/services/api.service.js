@@ -17,7 +17,7 @@ class ApiService {
         .then(deferred.resolve, deferred.reject);
         return deferred.promise;
     }
-    getRates(date = this.appConstants.api.rates.defaultDate, query = { base: this.appConstants.api.rates.defaultBase}) {
+    getRates(date = this.appConstants.api.rates.defaultDate, query = { base: this.appConstants.currencies.defaultBase}) {
         const url = this.appConstants.api.rates.url;
         return this.call('get', `${url}${date}`, { params: query });
     }
